@@ -1,0 +1,1024 @@
+definitions:
+  handler.Response:
+    properties:
+      data: {}
+      description:
+        type: string
+      status:
+        type: integer
+    type: object
+  models.BrandPrimaryKey:
+    properties:
+      brand_id:
+        type: integer
+    type: object
+  models.CategoryPrimaryKey:
+    properties:
+      category_id:
+        type: integer
+    type: object
+  models.CreateBrand:
+    properties:
+      brand_name:
+        type: string
+    type: object
+  models.CreateCategory:
+    properties:
+      category_name:
+        type: string
+    type: object
+  models.CreateProduct:
+    properties:
+      brand_id:
+        type: integer
+      category_id:
+        type: integer
+      list_price:
+        type: number
+      model_year:
+        type: integer
+      product_name:
+        type: string
+    type: object
+  models.CreateStock:
+    properties:
+      product_id:
+        type: integer
+      quantity:
+        type: integer
+    type: object
+  models.ProductPrimaryKey:
+    properties:
+      product_id:
+        type: integer
+    type: object
+  models.StockPrimaryKey:
+    properties:
+      stock_id:
+        type: integer
+    type: object
+  models.UpdateBrand:
+    properties:
+      brand_id:
+        type: integer
+      brand_name:
+        type: string
+    type: object
+  models.UpdateCategory:
+    properties:
+      category_id:
+        type: integer
+      category_name:
+        type: string
+    type: object
+  models.UpdateProduct:
+    properties:
+      brand_id:
+        type: integer
+      category_id:
+        type: integer
+      list_price:
+        type: number
+      model_year:
+        type: integer
+      product_id:
+        type: integer
+      product_name:
+        type: string
+    type: object
+  models.UpdateStock:
+    properties:
+      product_id:
+        type: integer
+      quantity:
+        type: integer
+      stock_id:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /brand:
+    get:
+      consumes:
+      - application/json
+      description: GetList Brand
+      operationId: getList_brand
+      parameters:
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: search
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: GetList Brand
+      tags:
+      - Brand
+    post:
+      consumes:
+      - application/json
+      description: Create Stock
+      operationId: create_stock
+      parameters:
+      - description: CreateStockRequest
+        in: body
+        name: brand
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateStock'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create Stock
+      tags:
+      - Stock
+  /brand/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: DELETE Brand
+      operationId: update_brand
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: DeleteBrandRequest
+        in: body
+        name: brand
+        required: true
+        schema:
+          $ref: '#/definitions/models.BrandPrimaryKey'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: DELETE Brand
+      tags:
+      - Brand
+    get:
+      consumes:
+      - application/json
+      description: GetById Brand
+      operationId: getByID_brand
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: GetById Brand
+      tags:
+      - Brand
+    put:
+      consumes:
+      - application/json
+      description: Update Brand
+      operationId: update_brand
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: UpdateBrandRequest
+        in: body
+        name: brand
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateBrand'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update Brand
+      tags:
+      - Brand
+  /category:
+    get:
+      consumes:
+      - application/json
+      description: Get List Category
+      operationId: get_list_category
+      parameters:
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: search
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get List Category
+      tags:
+      - Category
+    post:
+      consumes:
+      - application/json
+      description: Create Category
+      operationId: create_category
+      parameters:
+      - description: CreateCategoryRequest
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateCategory'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create Category
+      tags:
+      - Category
+  /category/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Category
+      operationId: delete_category
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: DeleteCategoryRequest
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/models.CategoryPrimaryKey'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete Category
+      tags:
+      - Category
+    get:
+      consumes:
+      - application/json
+      description: Get By ID Category
+      operationId: get_by_id_category
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get By ID Category
+      tags:
+      - Category
+    put:
+      consumes:
+      - application/json
+      description: Update Category
+      operationId: update_category
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: UpdateCategoryRequest
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateCategory'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update Category
+      tags:
+      - Category
+  /product:
+    get:
+      consumes:
+      - application/json
+      description: Get List Product
+      operationId: get_list_product
+      parameters:
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: search
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get List Product
+      tags:
+      - Product
+    post:
+      consumes:
+      - application/json
+      description: Create Product
+      operationId: create_product
+      parameters:
+      - description: CreateProductRequest
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateProduct'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Create Product
+      tags:
+      - Product
+  /product/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Product
+      operationId: delete_product
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: DeleteProductRequest
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.ProductPrimaryKey'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Delete Product
+      tags:
+      - Product
+    get:
+      consumes:
+      - application/json
+      description: Get By ID Product
+      operationId: get_by_id_product
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Get By ID Product
+      tags:
+      - Product
+    put:
+      consumes:
+      - application/json
+      description: Update Product
+      operationId: update_product
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: UpdateProductRequest
+        in: body
+        name: product
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateProduct'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update Product
+      tags:
+      - Product
+  /stock:
+    get:
+      consumes:
+      - application/json
+      description: GetList Stock
+      operationId: getList_stock
+      parameters:
+      - description: offset
+        in: query
+        name: offset
+        type: string
+      - description: limit
+        in: query
+        name: limit
+        type: string
+      - description: search
+        in: query
+        name: search
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: GetList Stock
+      tags:
+      - Stock
+  /stock/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: DELETE Stock
+      operationId: update_stock
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: DeleteStockRequest
+        in: body
+        name: stock
+        required: true
+        schema:
+          $ref: '#/definitions/models.StockPrimaryKey'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: DELETE Stock
+      tags:
+      - Stock
+    get:
+      consumes:
+      - application/json
+      description: GetById Stock
+      operationId: getByID_stock
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: GetById Stock
+      tags:
+      - Stock
+    put:
+      consumes:
+      - application/json
+      description: Update Stock
+      operationId: update_stock
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: UpdateStockRequest
+        in: body
+        name: stock
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateStock'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Success Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "500":
+          description: Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/handler.Response'
+            - properties:
+                data:
+                  type: string
+              type: object
+      summary: Update Stock
+      tags:
+      - Stock
+swagger: "2.0"
